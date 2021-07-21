@@ -116,7 +116,7 @@
           {
             "name": "password",
             "comment": "",
-            "dataType": "VARCHAR(50)",
+            "dataType": "VARCHAR(100)",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -131,13 +131,13 @@
               "pfk": false,
               "widthName": 60,
               "widthComment": 60,
-              "widthDataType": 83,
+              "widthDataType": 90,
               "widthDefault": 60
             },
             "id": "9249d8a2-d48a-483d-bfcf-a306be04c739"
           },
           {
-            "name": "profileImg",
+            "name": "profile_img",
             "comment": "",
             "dataType": "VARCHAR(200)",
             "default": "",
@@ -152,7 +152,7 @@
               "pk": false,
               "fk": false,
               "pfk": false,
-              "widthName": 63,
+              "widthName": 68,
               "widthComment": 60,
               "widthDataType": 90,
               "widthDefault": 60
@@ -207,10 +207,10 @@
           }
         ],
         "ui": {
-          "active": false,
+          "active": true,
           "left": 31.333333333333112,
           "top": 329.333333333333,
-          "zIndex": 1,
+          "zIndex": 6,
           "widthName": 60,
           "widthComment": 60
         },
@@ -340,7 +340,7 @@
           "active": false,
           "left": 46.666666666666615,
           "top": 47.99999999999991,
-          "zIndex": 4,
+          "zIndex": 3,
           "widthName": 60,
           "widthComment": 60
         },
@@ -447,7 +447,7 @@
           "active": false,
           "left": 593.3333333333331,
           "top": 57.999999999999964,
-          "zIndex": 3,
+          "zIndex": 2,
           "widthName": 64,
           "widthComment": 60
         },
@@ -531,7 +531,7 @@
           "active": false,
           "left": 592.6666666666665,
           "top": 370.66666666666737,
-          "zIndex": 2,
+          "zIndex": 1,
           "widthName": 60,
           "widthComment": 60
         },
