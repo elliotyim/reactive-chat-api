@@ -23,4 +23,9 @@ public class UserChat {
     @MapsId("userId")
     @JoinColumn(name = "user_id")
     private User user;
+
+    @PrePersist
+    public void createdAt() {
+        this.createdAt = LocalDateTime.now();
+    }
 }

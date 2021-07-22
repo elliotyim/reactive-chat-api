@@ -2,9 +2,7 @@ package com.elldev.reactivechat.entity;
 
 import lombok.Getter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -23,4 +21,15 @@ public class ChatRoom {
 
     @OneToMany(mappedBy = "chatRoom")
     private Set<UserChat> userChats;
+
+    @PrePersist
+    public void createdAt() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void updatedAt() {
+        this.updatedAt = LocalDateTime.now();
+    }
 }
