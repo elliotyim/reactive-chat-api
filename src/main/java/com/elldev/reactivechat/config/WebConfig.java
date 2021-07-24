@@ -1,17 +1,18 @@
 package com.elldev.reactivechat.config;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@ConfigurationProperties("web")
 public class WebConfig implements WebMvcConfigurer {
 
+    @Value("${web.allowed-origins}")
     private String[] origins;
+
+    @Value("${web.ssl}")
     private boolean ssl;
 
     @Override
