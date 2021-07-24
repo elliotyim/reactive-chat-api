@@ -1,10 +1,13 @@
 package com.elldev.reactivechat.service;
 
 import com.elldev.reactivechat.repository.UserRepository;
+import com.elldev.reactivechat.repository.UserSessionRepository;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.mock;
 
 class UserServiceImplTest {
@@ -14,7 +17,9 @@ class UserServiceImplTest {
     public UserServiceImplTest() {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         UserRepository userRepository = mock(UserRepository.class);
-        this.userService = new UserServiceImpl(encoder, userRepository);
+        UserSessionRepository userSessionRepository = mock(UserSessionRepository.class);
+        ApplicationContext ctx = mock(ApplicationContext.class);
+        this.userService = new UserServiceImpl(encoder, userRepository, userSessionRepository, ctx);
     }
 
     @Test
