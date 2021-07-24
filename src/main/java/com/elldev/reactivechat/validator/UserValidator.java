@@ -24,4 +24,11 @@ public class UserValidator {
         else if (userDto.getPassword() == null)
             throw new BadRequestException(ErrorCode.PASSWORD_NOT_PROVIDED, "Check the password");
     }
+
+    public static void checkSignInUserInput(UserDto userDto) throws BadRequestException {
+        if (userDto.getEmail() == null || !validateEmail(userDto.getEmail()) || userDto.getEmail().length() > 50)
+            throw new BadRequestException(ErrorCode.INVALID_EMAIL_PROVIDED, "Check the email");
+        else if (userDto.getPassword() == null)
+            throw new BadRequestException(ErrorCode.PASSWORD_NOT_PROVIDED, "Check the password");
+    }
 }
