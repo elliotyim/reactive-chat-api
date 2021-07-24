@@ -30,6 +30,10 @@ public class GlobalExceptionHandler {
             status = HttpStatus.BAD_REQUEST.value();
             payload.put("message", e.getMessage());
             payload.put("errorCode", ((BadRequestException) e).errorCode);
+        } else if (e instanceof UserSessionNotFoundException) {
+            status = HttpStatus.OK.value();
+            payload.put("message", e.getMessage());
+            payload.remove("errorCode");
         }
 
         log.error(e.getMessage(), e);
