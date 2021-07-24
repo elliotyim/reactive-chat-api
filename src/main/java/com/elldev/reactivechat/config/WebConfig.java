@@ -18,13 +18,12 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins(origins);
+                .allowedOrigins(origins)
+                .allowCredentials(true);
     }
 
     @Bean
     public boolean isHttpSecure() {
         return this.ssl;
     }
-
-
 }
