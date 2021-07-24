@@ -17,8 +17,8 @@ public class Message {
     private LocalDateTime createdAt;
 
     @ManyToOne
-    @MapsId("chatGuid")
-    @JoinColumn(name = "chat_guid")
+    @MapsId("chatId")
+    @JoinColumn(name = "chat_id")
     private ChatRoom chatRoom;
 
     @ManyToOne

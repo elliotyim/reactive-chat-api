@@ -6,11 +6,11 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@Entity(name = "chat_room")
+@Entity(name = "chat_rooms")
 @Getter
 public class ChatRoom {
     @Id
-    private String guid;
+    private String id;
 
     private String title;
     private LocalDateTime createdAt;

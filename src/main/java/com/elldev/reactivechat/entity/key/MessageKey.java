@@ -13,7 +13,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 public class MessageKey implements Serializable {
-    private String chatGuid;
+    private String chatId;
     private Long userId;
 
     @Override
@@ -21,11 +21,11 @@ public class MessageKey implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MessageKey that = (MessageKey) o;
-        return Objects.equals(chatGuid, that.chatGuid) && Objects.equals(userId, that.userId);
+        return Objects.equals(chatId, that.chatId) && Objects.equals(userId, that.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(chatGuid, userId);
+        return Objects.hash(chatId, userId);
     }
 }

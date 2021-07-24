@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserValidatorTest {
-    private final Long ID = 1l;
+    private final String ID = "test-id";
     private final String NAME = "testName";
     private final String EMAIL = "testEmail";
     private final String PASSWORD = "testPassword123";

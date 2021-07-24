@@ -6,7 +6,7 @@ import lombok.Getter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity(name = "user_chat")
+@Entity(name = "user_chats")
 @Getter
 public class UserChat {
     @EmbeddedId
@@ -15,8 +15,8 @@ public class UserChat {
     private LocalDateTime createdAt;
 
     @ManyToOne
-    @MapsId("chatGuid")
-    @JoinColumn(name = "chat_guid")
+    @MapsId("chatId")
+    @JoinColumn(name = "chat_id")
     private ChatRoom chatRoom;
 
     @ManyToOne

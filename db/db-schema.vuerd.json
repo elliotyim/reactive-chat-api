@@ -19,7 +19,7 @@
     },
     "database": "MySQL",
     "databaseName": "reactivechat",
-    "canvasType": "ERD",
+    "canvasType": "SQLDDL",
     "language": "GraphQL",
     "tableCase": "pascalCase",
     "columnCase": "camelCase",
@@ -47,10 +47,10 @@
           {
             "name": "id",
             "comment": "",
-            "dataType": "BIGINT",
+            "dataType": "CHAR(36)",
             "default": "",
             "option": {
-              "autoIncrement": true,
+              "autoIncrement": false,
               "primaryKey": true,
               "unique": false,
               "notNull": true
@@ -207,10 +207,10 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 31.333333333333112,
           "top": 329.333333333333,
-          "zIndex": 6,
+          "zIndex": 1,
           "widthName": 60,
           "widthComment": 60
         },
@@ -221,7 +221,7 @@
         "comment": "",
         "columns": [
           {
-            "name": "chat_guid",
+            "name": "chat_id",
             "comment": "",
             "dataType": "CHAR(36)",
             "default": "",
@@ -246,7 +246,7 @@
           {
             "name": "user_id",
             "comment": "",
-            "dataType": "BIGINT",
+            "dataType": "CHAR(36)",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -340,18 +340,18 @@
           "active": false,
           "left": 46.666666666666615,
           "top": 47.99999999999991,
-          "zIndex": 3,
+          "zIndex": 2,
           "widthName": 60,
           "widthComment": 60
         },
         "id": "b06f4161-6d9e-4a97-8ad6-515326f1aa38"
       },
       {
-        "name": "chat_room",
+        "name": "chat_rooms",
         "comment": "",
         "columns": [
           {
-            "name": "guid",
+            "name": "id",
             "comment": "",
             "dataType": "CHAR(36)",
             "default": "",
@@ -447,18 +447,18 @@
           "active": false,
           "left": 593.3333333333331,
           "top": 57.999999999999964,
-          "zIndex": 2,
-          "widthName": 64,
+          "zIndex": 3,
+          "widthName": 70,
           "widthComment": 60
         },
         "id": "44a4d333-a90b-4e43-a783-195ecbf16028"
       },
       {
-        "name": "user_chat",
+        "name": "user_chats",
         "comment": "",
         "columns": [
           {
-            "name": "chat_room_guid",
+            "name": "chat_room_id",
             "comment": "",
             "dataType": "CHAR(36)",
             "default": "",
@@ -473,7 +473,7 @@
               "pk": false,
               "fk": false,
               "pfk": true,
-              "widthName": 96,
+              "widthName": 81,
               "widthComment": 60,
               "widthDataType": 60,
               "widthDefault": 60
@@ -483,7 +483,7 @@
           {
             "name": "user_id",
             "comment": "",
-            "dataType": "BIGINT",
+            "dataType": "CHAR(36)",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -531,8 +531,8 @@
           "active": false,
           "left": 592.6666666666665,
           "top": 370.66666666666737,
-          "zIndex": 1,
-          "widthName": 60,
+          "zIndex": 4,
+          "widthName": 63,
           "widthComment": 60
         },
         "id": "097b6854-f078-4060-8d10-82b9d4649324"
@@ -563,7 +563,7 @@
           "columnIds": [
             "b0cb957a-55e0-4141-9c81-f5d5a2bcf82d"
           ],
-          "x": 809.1666666666665,
+          "x": 801.6666666666665,
           "y": 370.66666666666737,
           "direction": "top"
         },

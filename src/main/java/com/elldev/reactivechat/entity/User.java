@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity(name = "users")
 @NoArgsConstructor
@@ -16,8 +17,7 @@ import java.util.Set;
 @Getter
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private String name;
     private String email;
@@ -34,6 +34,7 @@ public class User {
 
     @PrePersist
     public void createdAt() {
+        this.id = UUID.randomUUID().toString();
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
