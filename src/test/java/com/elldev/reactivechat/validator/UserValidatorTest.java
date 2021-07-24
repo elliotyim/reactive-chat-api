@@ -2,7 +2,6 @@ package com.elldev.reactivechat.validator;
 
 import com.elldev.reactivechat.dto.UserDto;
 import com.elldev.reactivechat.exception.BadRequestException;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
