@@ -23,7 +23,7 @@ public class UserController {
 
     @GetMapping("/signin-check")
     public ResponseEntity<UserDto> checkIfSignedIn(
-            @CookieValue(value = "token") String token
+            @CookieValue(value = "token", required = false) String token
     ) throws Exception {
         UserSession userSession = userService.getUserSessionByToken(token);
         UserDto userDto = userService.getUserDtoByUserSession(userSession);
