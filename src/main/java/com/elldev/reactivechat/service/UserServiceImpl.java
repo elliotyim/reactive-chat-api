@@ -101,4 +101,12 @@ public class UserServiceImpl implements UserService {
         return UserDto.convertToDto(user);
     }
 
+    @Override
+    public UserDto signOut(String token) throws Exception {
+        UserSession userSession = getUserSessionByToken(token);
+        UserDto userDto = getUserDtoByUserSession(userSession);
+        userSessionRepository.delete(userSession);
+        return userDto;
+    }
+
 }
