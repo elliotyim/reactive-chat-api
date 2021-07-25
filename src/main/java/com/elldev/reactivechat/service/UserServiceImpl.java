@@ -85,6 +85,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserSession getUserSessionByToken(String token) throws UserSessionNotFoundException {
+        if (token == null)
+            throw new UserSessionNotFoundException(ErrorCode.USER_SESSION_NOT_FOUND, "User not singed in!");
+
         return userSessionRepository.findByToken(token).orElseThrow(
                 () -> new UserSessionNotFoundException(ErrorCode.USER_SESSION_NOT_FOUND, "User not singed in!")
         );
