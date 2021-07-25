@@ -47,7 +47,7 @@ public class UserController {
         return ResponseEntity.ok(signedInUser);
     }
 
-    @PostMapping
+    @PostMapping("/signup")
     public ResponseEntity<UserDto> signUp(@RequestBody UserDto userDto) throws Exception {
         UserValidator.checkRegistrationUserInput(userDto);
         UserDto registeredUser = userService.signUp(userDto);
