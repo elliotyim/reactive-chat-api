@@ -10,4 +10,5 @@ public interface UserService {
     String generateCookie(String name, String value) throws Exception;
     UserSession getUserSessionByToken(String token) throws Exception;
     UserDto getUserDtoByUserSession(UserSession userSession) throws Exception;
+    UserDto signOut(String token) throws Exception;
 }

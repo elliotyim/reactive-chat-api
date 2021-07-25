@@ -55,4 +55,13 @@ public class UserController {
         log.info("User " + registeredUser.getName() + " is registered.");
         return ResponseEntity.status(HttpStatus.CREATED.value()).body(registeredUser);
     }
+
+    @PostMapping("/signout")
+    public ResponseEntity signOut(
+            @CookieValue(value = "token") String token
+    ) throws Exception {
+        UserDto signedOutUser = userService.signOut(token);
+        log.info("User " + signedOutUser.getName() + " is signed out.");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+    }
 }
