@@ -52,6 +52,11 @@ class UserValidatorTest {
                 BadRequestException.class,
                 () -> UserValidator.checkRegistrationUserInput(userDto)
         );
+        assertThrows(
+                BadRequestException.class,
+                () -> UserValidator.checkSignInUserInput(userDto)
+        );
+
     }
 
     @Test
@@ -68,6 +73,10 @@ class UserValidatorTest {
                 BadRequestException.class,
                 () -> UserValidator.checkRegistrationUserInput(userDto)
         );
+        assertThrows(
+                BadRequestException.class,
+                () -> UserValidator.checkSignInUserInput(userDto)
+        );
 
         // when
         String invalidTopLevelDomain = "test@test.123";
@@ -78,6 +87,10 @@ class UserValidatorTest {
                 BadRequestException.class,
                 () -> UserValidator.checkRegistrationUserInput(userDto)
         );
+        assertThrows(
+                BadRequestException.class,
+                () -> UserValidator.checkSignInUserInput(userDto)
+        );
 
         // when
         String noAtMarkEmail = "test.test";
@@ -87,6 +100,10 @@ class UserValidatorTest {
         assertThrows(
                 BadRequestException.class,
                 () -> UserValidator.checkRegistrationUserInput(userDto)
+        );
+        assertThrows(
+                BadRequestException.class,
+                () -> UserValidator.checkSignInUserInput(userDto)
         );
 
         // when
@@ -102,6 +119,10 @@ class UserValidatorTest {
                 BadRequestException.class,
                 () -> UserValidator.checkRegistrationUserInput(userDto)
         );
+        assertThrows(
+                BadRequestException.class,
+                () -> UserValidator.checkSignInUserInput(userDto)
+        );
     }
 
     @Test
@@ -116,6 +137,10 @@ class UserValidatorTest {
         assertThrows(
                 BadRequestException.class,
                 () -> UserValidator.checkRegistrationUserInput(userDto)
+        );
+        assertThrows(
+                BadRequestException.class,
+                () -> UserValidator.checkSignInUserInput(userDto)
         );
     }
 
@@ -135,6 +160,10 @@ class UserValidatorTest {
         assertThrows(
                 BadRequestException.class,
                 () -> UserValidator.checkRegistrationUserInput(userDto)
+        );
+        assertThrows(
+                BadRequestException.class,
+                () -> UserValidator.checkSignInUserInput(userDto)
         );
     }
 }
