@@ -38,6 +38,21 @@ public class User {
     @OneToMany(mappedBy = "friendTwo")
     private Set<Friendship> friendshipsTwo;
 
+    public User setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public User setProfileImg(String profileImg) {
+        this.profileImg = profileImg;
+        return this;
+    }
+
+    public User setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
     @PrePersist
     public void createdAt() {
         this.id = UUID.randomUUID().toString();

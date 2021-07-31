@@ -3,6 +3,7 @@ package com.elldev.reactivechat.dto;
 import com.elldev.reactivechat.entity.Friendship;
 import com.elldev.reactivechat.entity.User;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class UserDto {
     private String email;
     private String password;
     private String profileImg;
+    private MultipartFile profileImgFile;
     private LocalDateTime createdAt;
 
     private List<UserDto> friends;
