@@ -32,6 +32,12 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<UserChat> userChats;
 
+    @OneToMany(mappedBy = "friendOne")
+    private Set<Friendship> friendshipsOne;
+
+    @OneToMany(mappedBy = "friendTwo")
+    private Set<Friendship> friendshipsTwo;
+
     @PrePersist
     public void createdAt() {
         this.id = UUID.randomUUID().toString();
