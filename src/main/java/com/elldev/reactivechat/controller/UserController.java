@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -71,5 +72,14 @@ public class UserController {
         UserDto signedOutUser = userService.signOut(token);
         log.info("User " + signedOutUser.getName() + " is signed out.");
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+    }
+
+    @PutMapping(value = "/profile", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<UserDto> modifyUserInfo(
+            @ModelAttribute UserDto userDto
+    ) throws Exception {
+        UserValidator.checkUserId(userDto.getId());
+        UserDto modifiedUser = userService.modifyUser(userDto);
+        return ResponseEntity.ok(modifiedUser);
     }
 }
