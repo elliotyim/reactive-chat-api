@@ -30,6 +30,9 @@ dependencies {
 
 	implementation 'org.springframework.security:spring-security-crypto:5.5.1'
 
+	implementation platform('software.amazon.awssdk:bom:2.15.0')
+	implementation('software.amazon.awssdk:s3')
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 }
