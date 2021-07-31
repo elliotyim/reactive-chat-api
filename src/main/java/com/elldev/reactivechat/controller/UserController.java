@@ -6,7 +6,6 @@ import com.elldev.reactivechat.service.UserService;
 import com.elldev.reactivechat.validator.UserValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +26,15 @@ public class UserController {
     ) throws Exception {
         UserSession userSession = userService.getUserSessionByToken(token);
         UserDto userDto = userService.getUserDtoByUserSession(userSession);
+        return ResponseEntity.ok(userDto);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserDto> getUserInfo(
+            @PathVariable(name = "userId") String userId
+    ) throws Exception {
+        UserValidator.checkUserId(userId);
+        UserDto userDto = userService.getUserInfo(userId);
         return ResponseEntity.ok(userDto);
     }
 

@@ -31,4 +31,9 @@ public class UserValidator {
         else if (userDto.getPassword() == null)
             throw new BadRequestException(ErrorCode.PASSWORD_NOT_PROVIDED, "Check the password");
     }
+
+    public static void checkUserId(String userId) throws BadRequestException {
+        if (userId == null || userId.length() < 36)
+            throw new BadRequestException(ErrorCode.INVALID_USER_ID_PROVIDED, "Check the userId");
+    }
 }

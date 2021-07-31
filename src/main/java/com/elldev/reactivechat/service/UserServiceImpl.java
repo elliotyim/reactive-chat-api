@@ -109,4 +109,12 @@ public class UserServiceImpl implements UserService {
         return userDto;
     }
 
+    @Override
+    public UserDto getUserInfo(String userId) throws BadRequestException {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new BadRequestException(ErrorCode.USER_NOT_EXIST, "No such user exists")
+        );
+        return UserDto.convertToDto(user);
+    }
+
 }
