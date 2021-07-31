@@ -542,7 +542,7 @@
         "id": "097b6854-f078-4060-8d10-82b9d4649324"
       },
       {
-        "name": "friends",
+        "name": "friendships",
         "comment": "",
         "columns": [
           {
@@ -662,11 +662,11 @@
           }
         ],
         "ui": {
-          "active": false,
+          "active": true,
           "left": 606.0012,
           "top": 450.6654,
-          "zIndex": 12,
-          "widthName": 60,
+          "zIndex": 22,
+          "widthName": 66,
           "widthComment": 60
         },
         "visible": true,
