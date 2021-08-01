@@ -8,22 +8,27 @@ import com.elldev.reactivechat.exception.BadRequestException;
 import com.elldev.reactivechat.exception.UserSessionNotFoundException;
 import com.elldev.reactivechat.repository.UserRepository;
 import com.elldev.reactivechat.repository.UserSessionRepository;
+import com.elldev.reactivechat.util.S3Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.ResponseCookie;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    private final ApplicationContext ctx;
+    private final S3Util s3;
     private final PasswordEncoder encoder;
     private final UserRepository userRepository;
     private final UserSessionRepository userSessionRepository;
-    private final ApplicationContext ctx;
 
     public void checkIfEmailAlreadyRegistered(String email) throws BadRequestException {
         if (userRepository.existsByEmail(email))
@@ -36,6 +41,12 @@ public class UserServiceImpl implements UserService {
 
     public boolean verifyPassword(String rawPassword, String encodedPassword) {
         return encoder.matches(rawPassword, encodedPassword);
+    }
+
+    private User getUserByUserId(String userId) throws BadRequestException {
+        return userRepository.findById(userId).orElseThrow(
+                () -> new BadRequestException(ErrorCode.USER_NOT_EXIST, "No such user exists")
+        );
     }
 
     @Override
@@ -107,6 +118,38 @@ public class UserServiceImpl implements UserService {
         UserDto userDto = getUserDtoByUserSession(userSession);
         userSessionRepository.delete(userSession);
         return userDto;
+    }
+
+    @Override
+    public UserDto getUserInfo(String userId) throws BadRequestException {
+        User user = getUserByUserId(userId);
+        return UserDto.convertToDto(user);
+    }
+
+    public String uploadProfileImg(String userId, MultipartFile imgFile) throws IOException {
+        String bucketName = ctx.getBean("bucketName", String.class);
+        String filePath = "profile/" + userId + "/" + UUID.randomUUID().toString();
+        URL savedImgUrl = s3.saveFile(imgFile, bucketName, filePath);
+        return savedImgUrl.toExternalForm();
+    }
+
+    @Override
+    public UserDto modifyUser(UserDto userDto) throws BadRequestException, IOException {
+        User user = getUserByUserId(userDto.getId());
+
+        String profileImgUrl = null;
+        if (userDto.getProfileImgFile() != null)
+            profileImgUrl = uploadProfileImg(user.getId(), userDto.getProfileImgFile());
+
+        boolean isSamePassword = verifyPassword(userDto.getPassword(), user.getPassword());
+        if (userDto.getPassword() != null && !userDto.getPassword().trim().equals("") && !isSamePassword)
+            user.setPassword(encodePassword(userDto.getPassword()));
+
+        user.setName(userDto.getName() != null ? userDto.getName() : user.getName())
+                .setProfileImg(userDto.getProfileImgFile() != null ? profileImgUrl : user.getProfileImg());
+
+        User updatedUser = userRepository.save(user);
+        return UserDto.convertToDto(updatedUser);
     }
 
 }

@@ -16,19 +16,34 @@ public class UserValidator {
         return matcher.find();
     }
 
-    public static void checkRegistrationUserInput(UserDto userDto) throws BadRequestException {
-        if (userDto.getEmail() == null || !validateEmail(userDto.getEmail()) || userDto.getEmail().length() > 50)
+    public static void checkUserId(String userId) throws BadRequestException {
+        if (userId == null || userId.length() < 36)
+            throw new BadRequestException(ErrorCode.INVALID_USER_ID_PROVIDED, "Check the userId");
+    }
+
+    public static void checkEmail(String email) throws BadRequestException {
+        if (email == null || !validateEmail(email) || email.length() > 50)
             throw new BadRequestException(ErrorCode.INVALID_EMAIL_PROVIDED, "Check the email");
-        else if (userDto.getName() == null || userDto.getName().length() > 30)
+    }
+
+    public static void checkName(String name) throws BadRequestException {
+        if (name == null || name.length() > 30)
             throw new BadRequestException(ErrorCode.INVALID_NAME_PROVIDED, "Check the name");
-        else if (userDto.getPassword() == null)
+    }
+
+    public static void checkPassword(String password) throws BadRequestException {
+        if (password == null)
             throw new BadRequestException(ErrorCode.PASSWORD_NOT_PROVIDED, "Check the password");
     }
 
+    public static void checkRegistrationUserInput(UserDto userDto) throws BadRequestException {
+        checkEmail(userDto.getEmail());
+        checkName(userDto.getName());
+        checkPassword(userDto.getPassword());
+    }
+
     public static void checkSignInUserInput(UserDto userDto) throws BadRequestException {
-        if (userDto.getEmail() == null || !validateEmail(userDto.getEmail()) || userDto.getEmail().length() > 50)
-            throw new BadRequestException(ErrorCode.INVALID_EMAIL_PROVIDED, "Check the email");
-        else if (userDto.getPassword() == null)
-            throw new BadRequestException(ErrorCode.PASSWORD_NOT_PROVIDED, "Check the password");
+        checkEmail(userDto.getEmail());
+        checkPassword(userDto.getPassword());
     }
 }

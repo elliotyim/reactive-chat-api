@@ -6,9 +6,9 @@ import com.elldev.reactivechat.service.UserService;
 import com.elldev.reactivechat.validator.UserValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +27,15 @@ public class UserController {
     ) throws Exception {
         UserSession userSession = userService.getUserSessionByToken(token);
         UserDto userDto = userService.getUserDtoByUserSession(userSession);
+        return ResponseEntity.ok(userDto);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserDto> getUserInfo(
+            @PathVariable(name = "userId") String userId
+    ) throws Exception {
+        UserValidator.checkUserId(userId);
+        UserDto userDto = userService.getUserInfo(userId);
         return ResponseEntity.ok(userDto);
     }
 
@@ -63,5 +72,14 @@ public class UserController {
         UserDto signedOutUser = userService.signOut(token);
         log.info("User " + signedOutUser.getName() + " is signed out.");
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+    }
+
+    @PutMapping(value = "/profile", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<UserDto> modifyUserInfo(
+            @ModelAttribute UserDto userDto
+    ) throws Exception {
+        UserValidator.checkUserId(userDto.getId());
+        UserDto modifiedUser = userService.modifyUser(userDto);
+        return ResponseEntity.ok(modifiedUser);
     }
 }

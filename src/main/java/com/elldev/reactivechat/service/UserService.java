@@ -11,4 +11,6 @@ public interface UserService {
     UserSession getUserSessionByToken(String token) throws Exception;
     UserDto getUserDtoByUserSession(UserSession userSession) throws Exception;
     UserDto signOut(String token) throws Exception;
+    UserDto getUserInfo(String userId) throws Exception;
+    UserDto modifyUser(UserDto userDto) throws Exception;
 }
