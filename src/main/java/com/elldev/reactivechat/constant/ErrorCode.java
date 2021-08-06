@@ -8,6 +8,8 @@ public class ErrorCode {
     public static final Integer REQUIRED_COOKIE_NOT_PROVIDED = 104;
     public static final Integer REQUEST_BODY_NOT_PROVIDED = 105;
     public static final Integer INVALID_USER_ID_PROVIDED = 106;
+    public static final Integer INVALID_PROFILE_FILE_PROVIDED = 107;
+    public static final Integer IMAGE_SIZE_TOO_BIG = 108;
 
     public static final Integer USER_ALREADY_EXIST = 200;
     public static final Integer USER_NOT_REGISTERED = 201;

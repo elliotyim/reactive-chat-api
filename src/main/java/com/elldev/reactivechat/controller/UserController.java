@@ -3,6 +3,7 @@ package com.elldev.reactivechat.controller;
 import com.elldev.reactivechat.dto.UserDto;
 import com.elldev.reactivechat.entity.UserSession;
 import com.elldev.reactivechat.service.UserService;
+import com.elldev.reactivechat.validator.FileValidator;
 import com.elldev.reactivechat.validator.UserValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -79,6 +80,7 @@ public class UserController {
             @ModelAttribute UserDto userDto
     ) throws Exception {
         UserValidator.checkUserId(userDto.getId());
+        FileValidator.checkProfileImg(userDto.getProfileImgFile());
         UserDto modifiedUser = userService.modifyUser(userDto);
         return ResponseEntity.ok(modifiedUser);
     }
