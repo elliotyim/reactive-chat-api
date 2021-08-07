@@ -36,7 +36,7 @@ public class FileValidatorTest {
     void Should_Profile_Not_Exceed_10MB() throws BadRequestException {
         // given
         String name = "profileImg";
-        String originalFileName = "test.json";
+        String originalFileName = "profile.jpg";
         String contentType = MediaType.IMAGE_JPEG_VALUE;
         byte[] content = new byte[10 * 1024 * 1024 + 1];
 
