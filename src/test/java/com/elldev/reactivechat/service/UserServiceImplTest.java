@@ -2,6 +2,7 @@ package com.elldev.reactivechat.service;
 
 import com.elldev.reactivechat.repository.UserRepository;
 import com.elldev.reactivechat.repository.UserSessionRepository;
+import com.elldev.reactivechat.util.S3Util;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,11 +16,12 @@ class UserServiceImplTest {
     UserServiceImpl userService;
 
     public UserServiceImplTest() {
+        ApplicationContext ctx = mock(ApplicationContext.class);
+        S3Util s3 = mock(S3Util.class);
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         UserRepository userRepository = mock(UserRepository.class);
         UserSessionRepository userSessionRepository = mock(UserSessionRepository.class);
-        ApplicationContext ctx = mock(ApplicationContext.class);
-        this.userService = new UserServiceImpl(encoder, userRepository, userSessionRepository, ctx);
+        this.userService = new UserServiceImpl(ctx, s3, encoder, userRepository, userSessionRepository);
     }
 
     @Test
