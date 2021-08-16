@@ -39,4 +39,4 @@ jobs:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Test
-      - run: ls -al
+        run: ls -al
