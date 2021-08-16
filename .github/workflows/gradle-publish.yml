@@ -25,7 +25,7 @@ jobs:
           settings-path: ${{ github.workspace }} # location for the settings.xml file
 
       - name: Intergration Test / Unit Test
-      - run: gradle test
+        run: gradle test
 
       - name: Build with Gradle
         run: gradle build
